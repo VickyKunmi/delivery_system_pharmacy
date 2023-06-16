@@ -1,0 +1,91 @@
+.container{
+    margin-top: 100px;
+    padding:80px;
+    margin-bottom: 70px;
+}
+.headfoot{
+    width:100%;
+}
+.left{
+    flex:2;
+}
+
+.right{
+    flex :1;
+}
+
+.table{
+    width: 80%;
+    border-spacing: 20px;
+    /* align-content: center; */
+    font-family: "Avenir Next", "Avenir", sans-serif;
+   
+
+}
+.table tr{
+    text-align: center;
+}
+.name{
+    /* font-weight: 500; */
+    color:blueviolet;
+    /* font-size: 18px; */
+
+}
+
+.total{
+    /* font-weight: 500; */
+    color:gold;
+    /* font-size: 18px; */
+}
+
+.wrapper{
+    width:15%;
+    max-height:300px;
+    background-color:#333;
+    padding:50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color:white;
+    /* align-self: baseline; */
+    margin-left: 1100px;
+    margin-top: -300px;
+    position: none;
+
+
+}
+
+.totalTextTitle{
+
+    margin-right: 10px;
+    /* padding-top:20px; */
+}
+.title{
+    margin-top:-20px;
+}
+.button{
+
+    margin-top:20px;
+    background-color: white;
+    color: blueviolet;
+    font-weight: bold;
+
+}
+
+.delete{
+    transition: all .5s ease;
+    color:  rgb(207, 170, 255);
+    border: 2px solid  rgb(207, 170, 255);
+    background-color : transparent;
+}
+.delete:hover{
+    color: white;
+    background-color: rgb(207, 170, 255);
+    cursor: pointer;
+}
+
+.a{
+    text-decoration: none;
+    color:rgb(169, 77, 255);
+
+}

@@ -1,0 +1,62 @@
+.container{
+   align-items: center;
+   margin-top:250px;
+  
+   /* padding-bottom: 50px; */
+}
+
+.orderinput{
+    display: flex;
+    flex-direction :column;
+    width : 400px;
+    padding:102px;
+    justify-self: center;
+    margin: auto;
+    box-shadow: rgba(33, 35, 38, 0.2) 0px 10px 10px -10px;
+
+    margin-top: -120px;
+    border-radius: 12px;
+    background-color: white;
+    margin-bottom:50px;
+    /* padding:20px; */
+}
+
+.first,.last,.address,.contact{
+    padding:10px;
+    margin-bottom: 20px;
+    border:1px blueviolet solid;
+    
+    /* border:none; */
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset; */
+
+    /* box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset; */
+}
+
+.button{
+    transition: all .5s ease;
+    color:  rgb(207, 170, 255);
+    border: 2px solid  rgb(207, 170, 255);
+    font-family:'Montserrat', sans-serif;
+    font-weight:bolder;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1;
+    font-size: 13px;
+    background-color : transparent;
+    padding: 10px;
+    outline: none;
+    border-radius: 4px;
+}
+
+.button:hover{
+    color: white;
+    background-color: rgb(207, 170, 255);
+    cursor: pointer;
+}
+.title{
+    color: rgb(169, 77, 255);
+    font-family:'Montserrat', sans-serif;
+    margin-top: -30px;
+
+}
+

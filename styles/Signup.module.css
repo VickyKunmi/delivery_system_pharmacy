@@ -1,0 +1,11 @@
+.sign{
+    margin-left: 45%;
+}
+
+.gen{
+    display: flex;
+        justify-content: center;
+        align-Items: center;
+        height: 100vh;
+        padding: 0 16px;
+}

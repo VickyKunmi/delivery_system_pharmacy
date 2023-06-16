@@ -1,0 +1,18 @@
+.status{
+    border: 2px gold solid;
+    padding: 2px;
+    width:90px;
+    height: 30px;
+    margin-left:550px;
+    margin-top:-95px;
+    /* margin:calc(10vh - 50px); */
+
+}
+
+.ordstatus{
+    margin-top: 7px;
+    font-size: 13px;
+    padding:2px;
+    /* font-weight: bold; */
+    font-family: "Avenir Next", "Avenir", sans-serif;
+}

@@ -1,0 +1,162 @@
+.container {
+    height:100px;
+    padding: 0px 0px;
+    background-color: white;
+    flex-direction: row;
+  width: 100%;
+  margin-left: -10px;
+    display: flex;
+    align-items: center;
+    justify-content : space-between;
+    position: fixed;
+    top:0;
+    box-shadow: rgba(33, 35, 38, 0.2) 0px 10px 10px -10px;
+    z-index:999;
+}
+
+.list{
+    margin-left: 720px;
+    padding:0;
+    display:flex;
+    align-items:none;
+    list-style: none;
+    color: rgb(186, 152, 255);
+    font-family: "Avenir Next", "Avenir", sans-serif;
+    
+}
+
+.a{
+    color: rgb(186, 152, 255);
+    text-decoration: none;
+
+   
+
+}
+
+.listItem{
+    margin: 20px;
+    font-weight: 50;
+    /* margin-left: 0px; */
+    list-style: none;
+    text-decoration: none;
+}
+
+.cart{
+    position: relative;
+    color:rgb(217, 201, 248);
+    margin-left: -40px;
+}
+.icon{
+    width:20px;
+    height:50px;
+    color: rgb(207, 170, 255);
+    cursor:pointer;
+
+}
+
+.counter{
+    position: absolute;
+    top: -1px;
+    right:-10px; 
+    left: 10px;
+    width:15px; 
+    height:15px; 
+    border-radius: 50%;
+    border: 2px white solid;
+    background-color:rgb(207, 170, 255);
+    color:white;
+    padding:3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  
+
+
+}
+
+.listItem:hover{
+    color:white;
+    background-color:  rgb(207, 170, 255);
+    height:auto;
+    width:auto;
+    cursor: pointer;
+    padding: 0px;
+} 
+
+
+
+    
+.image{
+margin-top:-1px;
+}
+
+.a:hover{
+  color:white;
+  background-color:  rgb(207, 170, 255);
+  height:auto;
+  width:auto;
+  cursor: pointer;
+  padding: 0px;
+}
+
+
+
+
+
+
+
+
+/*  */
+
+.dropbtn {
+    text-decoration: none;
+    color: rgb(207, 170, 255);
+    border: 0;
+    background-color: transparent;
+    font-size: 16px;
+    font-weight: none;
+    /* margin: 20px; */
+    cursor: pointer;
+
+  }
+  .dropbtn:hover {
+    color:white;
+    font-size: 16px;
+    transition: 0.2s;
+    border:none;
+  }
+
+  /* .dropDown { */
+    /* background-color: blue;
+    position: relative;
+    text-align: left;
+    width: 150%;
+    height: auto;
+    font-family: "Roboto", sans-serif; */
+  /* } */
+
+  
+  /* .dropdownlist { */
+    /* background-color: yellow;
+    border: 0;
+    padding: 10px;
+    /* box-shadow: 0 1px 0 rgb(145, 132, 228) inset; */
+    /* color: rgb(132, 38, 38);
+    font-weight: bold;
+    font-size: medium;  */
+  /* } */
+  /* .dropdownlist:hover { */
+    /* background-color: goldenrod; */
+  /* } */
+
+  .menuitem{
+    /* margin-top:20px; */
+    background-color: white;
+    border:none;
+    color: blueviolet;
+    font-weight: bold;
+  }
+  .dropDown{
+    position: relative;
+  }
