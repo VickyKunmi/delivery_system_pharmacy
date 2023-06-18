@@ -349,10 +349,10 @@ export const getCarts = async () => {
   return JSON;
 };
 
-export const getCart_helper = async ({ cartId }) => {
-  cartId = cartId.data;
+export const getCart_helper = async ({ orderdetailId }) => {
+  orderdetailId = orderdetailId.data;
   const response = await fetch(
-    `${getServer}/api/Cart/single?cartId=${cartId}`
+    `${getServer}/api/Cart/single?orderdetailId=${orderdetailId}`
   );
   const json = await response.json();
   if (json) return json;
@@ -377,11 +377,11 @@ export const addCart = async (formData) => {
 };
 
 
-export async function updateSingleCart({cartId, models}){
+export async function updateSingleCart({orderdetailId, models}){
     const options = {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ cartId, models }),
+        body: JSON.stringify({ orderdetailId, models }),
       };
       const response = await fetch(`${getServer}/api/Cart
       /single`, options);
@@ -395,7 +395,71 @@ export async function updateSingleCart({cartId, models}){
 export async function deleteSingleCart(cartId) {
   try {
     console.log(cartId, "cart delete");
-    const res = await axios.delete(`${getServer}/api/Cart/single?cartId=${categoryId}`);  
+    const res = await axios.delete(`${getServer}/api/Cart/single?cartId=${cartId}`);  
+    if(res && res.status === 200) return true
+  } catch (error) {
+    console.log(error)
+  }
+ 
+}
+
+
+
+
+//helper for Order details
+export const getOrderdetail = async () => {
+  const response = await fetch(`${getServer}/api/OrderDetails`);
+  const JSON = await response.json();
+  return JSON;
+};
+
+export const getOrderdetail_helper = async ({ orderdetailId }) => {
+  orderdetailId = orderdetailId.data;
+  const response = await fetch(
+    `${getServer}/api/Orderdetails/single?orderdetailId=${orderdetailId}`
+  );
+  const json = await response.json();
+  if (json) return json;
+  return {};
+};
+
+export const addOrderdetail = async (formData) => {
+  try {
+    const options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    };
+    console.log(formData, "data");
+    const response = await fetch(`${getServer}/api/OrderDetails`, options);
+    // const response = await axios.post(`${getServer}/api/Category`, formData);
+    const json = await response.json();
+    return json;
+  } catch (error) {
+    return error;
+  }
+};
+
+
+export async function updateSingleOrderDetail({orderdetailId, models}){
+    const options = {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ orderdetailId, models }),
+      };
+      const response = await fetch(`${getServer}/api/Orderdetail
+      /single`, options);
+      const json = await response.json();
+      return json;
+} 
+
+
+
+
+export async function deleteSingleOrderDetail(orderdetailId) {
+  try {
+    console.log(orderdetailId, "order delete");
+    const res = await axios.delete(`${getServer}/api/OrderDetails/single?orderdetailId=${orderdetailId}`);  
     if(res && res.status === 200) return true
   } catch (error) {
     console.log(error)

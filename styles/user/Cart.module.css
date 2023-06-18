@@ -1,5 +1,5 @@
 .container{
-    margin-top: 100px;
+    margin-top: 120px;
     padding:80px;
     margin-bottom: 70px;
 }
@@ -12,6 +12,8 @@
 
 .right{
     flex :1;
+    margin-top: 10%;
+    /* margin-right: 80px; */
 }
 
 .table{
