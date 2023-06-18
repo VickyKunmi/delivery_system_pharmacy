@@ -1,3 +1,5 @@
+import { getDistance } from "geolib";
+
 const { createSlice } = require("@reduxjs/toolkit");
 
 const cartSlice = createSlice({
@@ -17,7 +19,16 @@ const cartSlice = createSlice({
         action.payload.price * action.payload.quantity + state.deliveryFee;
     },
     updateDeliveryFee: (state, action) => {
-      state.deliveryFee = action.payload;
+    //   state.deliveryFee = action.payload;
+    const { deliveryAddress, sourceLocation } = action.payload;
+
+      // Calculate the distance between delivery address and source location
+      const distance = getDistance(sourceLocation, deliveryAddress);
+
+      // Assuming delivery fee is calculated based on distance
+      // You can modify this calculation according to your requirements
+      const deliveryFee = distance * 0.1; // Assuming delivery fee is 0.1 unit per distance unit
+      state.deliveryFee = deliveryFee;
     },
     reset: (state) => {
       state = initialState;
