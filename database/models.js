@@ -74,9 +74,25 @@ const Carts = sequelize.define(
     price: { type: DECIMAL, allowNull: false },
     price_symbol: { type: STRING, allowNull: false },
     image: { type: STRING, allowNull: false },
+    total: { type: DECIMAL, allowNull: false },
   },
   {
     tableName: "carts",
+  }
+);
+
+const OrderDetails = sequelize.define(
+  "orderdetails",
+  {
+    name: { type: STRING, allowNull: false },
+    quantity: { type: INTEGER, allowNull: false },
+    price: { type: DECIMAL, allowNull: false },
+    price_symbol: { type: STRING, allowNull: false },
+    image: { type: STRING, allowNull: false },
+    // total: { type: DECIMAL, allowNull: false },
+  },
+  {
+    tableName: "orderdetails",
   }
 );
 
@@ -113,7 +129,7 @@ const FeaturedDrugs = sequelize.define(
   }
 );
 
-// sequelize.sync();
+sequelize.sync();
 
 export const models = {
   Categories,
@@ -123,5 +139,6 @@ export const models = {
   Orders,
   Carts,
   FeaturedDrugs,
+  OrderDetails,
   sequelize,
 };
