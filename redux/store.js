@@ -11,3 +11,6 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().prepend(listenerMiddleWare.middleware),
 });
+
+
+export const getState = () => store.getState();

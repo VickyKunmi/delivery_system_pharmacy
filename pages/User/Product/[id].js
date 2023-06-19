@@ -20,7 +20,10 @@ const Product = ({ featured }) => {
   const [quantity, setQuantity] = useState(1);
   const [savedNotify, setSavedNotify] = useState(null);
   const router = useRouter();
+  // const dispatch = useDispatch();
   const dispatch = useDispatch();
+
+  
   const handleAddCart = async (model) => {
     const result = await addOrderdetail(model);
     const { isSaved } = result;
@@ -39,8 +42,8 @@ const Product = ({ featured }) => {
         description: Newdescription,
         quantity,
       };
-      dispatch(addDrug({...model}))
-       await handleAddCart(model);
+      dispatch(addDrug({ ...model }));
+      await handleAddCart(model);
       console.log(model, "models");
     } catch (err) {
       console.log(err);
@@ -51,38 +54,45 @@ const Product = ({ featured }) => {
     <div>
       <Header />
       {/* <form onSubmit={handleAdd}> */}
-        <div className={styles.container}>
-          <div className={styles.left} key={id}>
-            <div className={styles.imgContainer}>
-              <Image src={image} width={400} height={400} alt=" " />
-            </div>
-          </div>
-          <div className={styles.right}>
-            {/* <h1>Hello</h1> */}
-            <h1
-              className={styles.title}
-              onChange={(e) => setName(e.target.value)}
-            >
-              {name}
-            </h1>
-            <span className={styles.price}>
-              {price_symbol}
-              {price}
-            </span>
-            <p className={styles.description}>{description}</p>
-            <div className={styles.add}>
-              <input
-                type="number"
-                defaultValue={1}
-                className={styles.quantity}
-                onInput={(e) => setQuantity(e.target.value)}
-              />
-              <button className={styles.button} onClick={handleAdd}>
-                Add to Cart
-              </button>
-            </div>
+      <div className={styles.container}>
+        <div className={styles.left} key={id}>
+          <div className={styles.imgContainer}>
+            <Image src={image} width={400} height={400} alt=" " />
           </div>
         </div>
+        <div className={styles.right}>
+          {/* <h1>Hello</h1> */}
+          <h1
+            className={styles.title}
+            onChange={(e) => setName(e.target.value)}
+          >
+            {name}
+          </h1>
+          <span className={styles.price}>
+            {price_symbol}
+            {price}
+          </span>
+          <p className={styles.description}>{description}</p>
+          <div className={styles.add}>
+            <input
+              type="number"
+              defaultValue={1}
+              className={styles.quantity}
+              onInput={(e) => setQuantity(e.target.value)}
+            />
+            {/* <button className={styles.button} onClick={handleAdd}>
+                Add to Cart
+              </button> */}
+
+            <button
+              className={styles.button}
+              onClick={handleAdd}
+            >
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
       {/* </form> */}
       <Footer />
     </div>

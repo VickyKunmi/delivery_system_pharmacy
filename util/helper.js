@@ -204,7 +204,7 @@ export const getDrugs = async () => {
 export const getDrug_helper = async ({ drugId }) => {
   drugId = drugId.data;
   const response = await fetch(
-    `${getServer}/api/Category/single?drugId=${drugId}`
+    `${getServer}/api/Drug/single?drugId=${drugId}`
   );
   const json = await response.json();
   if (json) return json;
@@ -403,6 +403,30 @@ export async function deleteSingleCart(cartId) {
  
 }
 
+
+
+// export async function deleteSingleCart(cartId) {
+//   const Options = {
+//     method: "DELETE",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify({ cartId }),
+//   };
+//   const response = await fetch(`${getServer}/api/api/Cart/single`, Options);
+//   const json = await response.json();
+//   return json; // Make sure the response contains the necessary properties
+// }
+
+
+// export async function deleteSingleCart(cartId) {
+//   const Options = {
+//     method: "DELETE",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify({ cartId }),
+//   };
+//   const response = await fetch(`${getServer}/api/api/Cart/single`, Options);
+//   const json = await response.json();
+//   return json;
+// }
 
 
 

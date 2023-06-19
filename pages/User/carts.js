@@ -122,8 +122,8 @@ const Cart = ({ orders }) => {
             </div>
 
             <button className={styles.button}>
-              <a className={styles.a} href="/User/login">
-                PROCCED
+              <a className={styles.a} href="/User/DeliveryAddress">
+                CHECKOUT
               </a>
             </button>
           </div>

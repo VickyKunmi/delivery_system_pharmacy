@@ -118,9 +118,7 @@ export default function DeliveryAddress() {
         <title>Get Pills</title>
         <meta name="description" content="Get pills, any drug at all" />
         <link rel="icon" href="/GP violet.png" />
-        {/* <script
-          url={`https://maps.googleapis.com/maps/api/js?key=AIzaSyAVvdmqcgtMUrZL7ftwUaGZJ94t03UXwsU&libraries=places`}
-        /> */}
+
         <Script id="google-maps-script" onLoad={initAutocomplete}>
           {`
     function initAutocomplete() {
