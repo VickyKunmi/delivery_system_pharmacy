@@ -41,7 +41,7 @@ export async function getDrug(req, res) {
 
     try {
       if (drugId) {
-        const drug = await Drugs.findOne({ where: { id: drugId } });
+        const drug = await Drugs.findAll({ where: { id: drugId } });
         if (drug) return res.status(200).send(drug);
       }
       // res.status(404).json({ error: "drug not selected" });

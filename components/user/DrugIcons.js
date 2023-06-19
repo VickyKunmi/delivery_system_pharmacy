@@ -13,3 +13,6 @@ const DrugIcon = ({ drugs }) => {
 };
 
 export default DrugIcon;
+
+
+

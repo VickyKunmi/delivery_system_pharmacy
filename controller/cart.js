@@ -100,10 +100,10 @@ export async function getCart(req, res) {
   
   export async function deleteCart(req, res) {
     try {
-      const {cartId}  = req.query;
+      const {cartId}  = req.body;
       console.log(cartId, 'from query param')
-      if (parseInt(cartId)) {
-        const cart = await Drugs.findOne({
+      if (cartId) {
+        const cart = await Carts.findOne({
           where: { id: cartId },
         });
         if (cart) {

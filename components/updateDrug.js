@@ -26,13 +26,13 @@ export function UpdateDrug({ handleClose, data, cat }) {
       setSavedNotify(true);
       setTimeout(() => {
         handleClose();
-        router.replace(router.asPath);
+        router.replace('/drug');
       }, 1000);
     }
   };
 
   const handleEdit = async (e) => {
-    e.preventdefault();
+    e.preventDefault();
     try {
       if (newFile === image) {
         const models = {
@@ -83,10 +83,11 @@ export function UpdateDrug({ handleClose, data, cat }) {
         <Paper sx={{ p: "1em", gap: "1em" }} elevation={0}>
           <h4>Category</h4>
           <select
-            className={styles.input}
+            // className={styles.input}
+            defaultValue={category}
             onInput={(e) => setnewCategory(e.target.value)}
           >
-            <option defaultValue={category}></option>
+            {/* <option defaultValue={category}></option> */}
             {cat.length > 0
               ? cat.map(({ id, title }, i, k) => (
                   <option key={i} value={title}>
@@ -110,10 +111,11 @@ export function UpdateDrug({ handleClose, data, cat }) {
           <h4>Price Symbol</h4>
           <select
             // value={price_symbol}
-            className={styles.input}
+            // className={styles.input}
+            defaultValue={price_symbol}
             onInput={(e) => setnewPriceSymbol(e.target.value)}
           >
-            <option defaultValue={price_symbol}></option>
+            <option></option>
             <option>$</option>
             <option>Cedis</option>
             <option>#</option>

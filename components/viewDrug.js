@@ -17,8 +17,7 @@ export function ViewDrug({ data }) {
           type="text"
           name="name"
           placeholder="Name"
-          // value={name}
-          value={name}
+          defaultValue={name}
           readOnly
         />
       </Paper>
@@ -28,7 +27,7 @@ export function ViewDrug({ data }) {
           type="text"
           name="category"
           placeholder="Category"
-          value={category}
+          defaultValue={category}
           readOnly
         />
       </Paper>
@@ -38,7 +37,7 @@ export function ViewDrug({ data }) {
           type="text"
           name="description"
           placeholder="Description"
-          value={description}
+          defaultValue={description}
           readOnly
         />
       </Paper>
@@ -48,7 +47,7 @@ export function ViewDrug({ data }) {
           type="text"
           name="price_symbol"
           placeholder="Price symbol"
-          value={price_symbol}
+          defaultValue={price_symbol}
           readOnly
         />
       </Paper>
@@ -58,7 +57,7 @@ export function ViewDrug({ data }) {
           type="text"
           name="price"
           placeholder="Price"
-          value={price}
+          defaultValue={price}
           readOnly
         />
       </Paper>
