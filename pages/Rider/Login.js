@@ -1,7 +1,60 @@
 import Head from "next/head";
 import styles from "../../styles/rider/Login.module.css";
+import { useState } from "react";
+import { useRouter } from "next/router";
+import { Message } from "@/components/Message";
+import { signIn } from "next-auth/react";
 
 export default function LoginForm() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [savedNotify, setSavedNotify] = useState(null);
+  const router = useRouter();
+
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     const response = await fetch("/api/Rider/login", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ username, password }),
+  //     });
+
+  //     if (response.ok) {
+  //       // Login successful
+  //       router.replace("/Rider"); // Redirect to the dashboard page
+  //     } else {
+  //       // Login failed
+  //       setSavedNotify("Invalid username or password");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error logging in:", error);
+  //     setSavedNotify("Error logging in. Please try again later.");
+  //   }
+  // };
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const result = await signIn("credentials", {
+      username,
+      password,
+      redirect: false,
+    });
+
+    if (result?.error) {
+      console.error("Login error:", result.error);
+    } else if (result?.ok) {
+      router.push("/Rider");
+    }
+  };
+
+
+
   return (
     <>
       <Head>
@@ -11,23 +64,26 @@ export default function LoginForm() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles.LogDiv}>
-        <form className={styles.LogForm}>
-          <label for="rider" className={styles.rider}>
+        <form className={styles.LogForm} onSubmit={handleSubmit}>
+        {savedNotify && <Message info={"Invalid details"}/>}
+          <label  className={styles.rider}>
             RIDER
           </label>
-          <label for="Mail" className={styles.MailText}>
-            Email
+          <label className={styles.MailText}>
+           Username
           </label>
           <input
-            type="email"
+            type="text"
             id="email"
             name="mail"
             className={styles.maily}
-            placeholder="newuser@gmail.com"
+            placeholder="newuser"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
 
-          <label for="Pass" className={styles.PassText}>
+          <label className={styles.PassText}>
             Password
           </label>
           <input
@@ -36,6 +92,8 @@ export default function LoginForm() {
             name="password"
             className={styles.pass}
             placeholder="******"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
 

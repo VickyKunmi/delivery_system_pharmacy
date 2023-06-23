@@ -34,10 +34,12 @@ export default function Orderdetails(){
       <p className={styles.Total}>Total</p>
       <p className={styles.TotalPrice}>2.50 Cedis</p>
 
+      <button className={styles.btn1}>ASSIGN TO ME</button>
+
+
    
         </div>
         <div>
-        <button className={styles.btn1}>PICKED UP</button>
         {/* <button className={styles.btn1}>EN ROUTE</button>
         <button className={styles.btn1}>REACHED</button>
         <button className={styles.btn1}>DELIVERED</button> */}
