@@ -228,6 +228,57 @@ LandMarks.belongsTo(Price, {
 
 
 
+
+
+
+
+const DeliveryDetails = sequelize.define(
+  "deliverydetails",
+  {
+    drugname: { type: STRING, allowNull: false },
+    quantity: { type: INTEGER, allowNull: false },
+    price: { type: DECIMAL, allowNull: false },
+    price_symbol: { type: STRING, allowNull: false },
+    rider_name: { type: STRING, allowNull: false },
+    rider_phonenumber: { type: STRING, allowNull: false },
+    rider_plate: { type: STRING, allowNull: false },
+    cust_deliveryaddress: { type: STRING, allowNull: false },
+
+    // total: { type: DECIMAL, allowNull: false },
+  },
+  {
+    tableName: "deliverydetails",
+  }
+);
+
+
+
+
+
+
+
+const Prescription = sequelize.define(
+  "prescription",
+  {
+    email: { type: STRING, allowNull: false },
+   contact: { type: STRING, allowNull: false },
+   image: { type: STRING, allowNull: false },
+ 
+    // total: { type: DECIMAL, allowNull: false },
+  },
+  {
+    tableName: "prescription",
+  }
+);
+
+
+
+
+
+
+
+
+
 // sequelize.sync();
 
 export const models = {
@@ -243,5 +294,7 @@ export const models = {
   FeaturedDrugs,
   OrderDetails,
   Delivery,
+  DeliveryDetails,
+  Prescription,
   sequelize,
 };

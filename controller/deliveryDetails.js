@@ -18,8 +18,9 @@ export async function getDelivery(req, res) {
 }
 // contoller for single get method
 
-export async function getOneDelivery(req, res, deliveryId) {
-  // const {deliveryId} = req.query;
+export async function getOneDelivery(req, res) {
+  const {deliveryId} = req.query;
+  // console.log(deliveryId, "DELIVERY")
   try {
     if (deliveryId) {
       const delivery = await Delivery.findAll({ where: { id: deliveryId } });
