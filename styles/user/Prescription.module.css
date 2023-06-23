@@ -1,0 +1,48 @@
+.container{
+    width:800px;
+    height:900px;
+    justify-content: center;
+    align-items: center;
+    /* align-contentpx; */
+    margin-left:25%;
+    height:900px;
+    /* height:auto; */
+
+    margin-bottom:600px;
+    background-color: white;
+    margin-top: 200px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.label{
+    /* margin-bottom:200px; */
+    margin-left: 15px;
+
+}
+
+.contact{
+    margin-top : 10px;
+    width:40%;
+    margin-left: 15px;
+}
+
+.title{
+    text-align: center;
+    color: rgb(169, 77, 255);
+    font-family:'Montserrat', sans-serif;
+    margin-top: -30px;
+    font-size: x-large;
+
+
+}
+.image{
+    margin-top : 290px;
+    margin-left:50px;
+}
+
+
+
+.choosefile{
+    justify-content:flex-end;
+    margin-top: 770px;
+}

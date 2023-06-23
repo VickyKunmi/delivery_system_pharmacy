@@ -5,7 +5,8 @@
     margin-top: 0;
     height: auto;
     border-radius: 20px;
-    
+    margin-bottom:50px;
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 
 
@@ -21,7 +22,7 @@
 
 }
 .eachItem {
-    display: block;
+    display: block ;
     width: 50%;
 }
 
@@ -89,7 +90,7 @@
     border-radius: 5px;
     border-color: white;
     color: #efeded;
-    font-size: 30px;
+    font-size: 20px;
     cursor: pointer;
     /* position: fixed; */
     margin-bottom: 20px;
@@ -108,7 +109,7 @@
 .category {
     margin-left: 20%;
     margin-top: 30%;
-    background-color: #fff;
+    background-color: #ffffff;
     width: 80%;
     border-radius: 10px;
     height: auto;
@@ -125,7 +126,7 @@
 }
 
 .table {
-    margin-top: 10px;
+    margin-top: 100px;
     margin-left: 30px;
     table-layout: fixed;
     width: 95%;
@@ -136,6 +137,7 @@
 
 .table tbody {
     background-color: #fff;
+    /* margin-top: 600px; */
 }
 
 .table tr {
@@ -155,7 +157,7 @@
 
 .details td {
     margin-top: 20px;
-    font-size: 20px;
+    font-size: 16px;
     font-family: 'Times New Roman', Times, serif;
 }
 
@@ -177,6 +179,8 @@
     color: #000000;
     border: 3px solid red;
     border-radius: 5px;
+    /* padding-top:30px; */
+    text-align: center;
 }
 
 .delete:hover {
@@ -202,4 +206,14 @@
 .containers {
     display: flex;
     margin-top: 0;
+}
+
+.btn{
+    display: flex;
+    flex-direction: row;
+    /* margin-top: px; */
+    /* margin-top: 200px; */
+    width:110%;
+    /* padding: 50px; */
+    /* margin-top: 500px; */
 }

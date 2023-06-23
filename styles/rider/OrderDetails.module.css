@@ -1,65 +1,111 @@
-
-
-.customerslip{
-width:400px;
-height:300px;
-border-radius: 10px;
-background-color: rgb(255, 255, 255);
-border: 2px rgb(185, 185, 255) dashed;
-margin: 70px;
-margin-left: 600px;
-}
-
-.orderslip{
-    width:400px;
-    height:300px;
+.customerslip {
+    width: 400px;
+    height: 300px;
     border-radius: 10px;
     background-color: rgb(255, 255, 255);
     border: 2px rgb(185, 185, 255) dashed;
     margin: 70px;
-    margin-left: 600px;
+    margin-left: 200px;
+}
+.body{
+    display: flex;
+    width: 100%;
+}
 
-    }
-.header{
-    color:gold;
+.orderslip {
+    width: 400px;
+    height: 300px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    border: 2px rgb(185, 185, 255) dashed;
+    margin: 70px;
+    margin-left: 200px;
+
+}
+.items{
+    display: flex;
+}
+.header {
+    color: gold;
     text-align: center;
 }
-.Name,.Contact,.Delivery,.Item{
-    margin-left:20px;
+
+.Name,
+.Contact,
+.Delivery,
+.Item {
+    margin-left: 20px;
     font-weight: bold;
 }
-.UserName, .UserContact, .UserDelivery{
+
+.UserName,
+.UserContact,
+.UserDelivery {
     margin-left: 20px;
     padding: 0px;
 }
 
-.ItemPrice{
+.ItemPrice {
     text-align: end;
     margin-top: -33px;
-    margin-right: 20px;
-}
-.subtotal{
-    margin-left:20px;
-}
-.subprice{
-    text-align: end;
-    margin-top: -33px;
-    margin-right: 20px;
-}
-.Total{
-    
-    font-weight: bolder;
-    margin-left:20px;
-    margin-top: 100px;
-}
-.TotalPrice{
-    text-align: end;
-    margin-top: -53px;
-    color:gold;
-    font-weight:bold;
     margin-right: 20px;
 }
 
-.Total, .TotalPrice{
+.subtotal {
+    margin-left: 20px;
+}
+
+.subprice {
+    text-align: end;
+    margin-top: -33px;
+    margin-right: 20px;
+}
+
+.Total {
+
+    font-weight: bolder;
+    margin-left: 20px;
+    margin-top: 100px;
+}
+
+.TotalPrice {
+    text-align: end;
+    margin-top: -53px;
+    color: gold;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.info {
+    width: 400px;
+    height: 250px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    border: 2px rgb(185, 185, 255) dashed;
+    /* margin: 70px; */
+    margin-left: 50px;
+}
+.info h3{
+    margin-left: 20px;
+}
+.switch{
+    margin-top: 10px;
+}
+.Total,
+.TotalPrice {
     font-size: 25px;
+}
+
+.btn1 {
+    align-items: center;
+    margin: 70px;
+    margin-left: 600px;
+    width: 400px;
+    background-color: gold;
+    padding: 15px;
+    border-color: none;
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: larger;
 }

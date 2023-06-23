@@ -1,5 +1,5 @@
 import { Sequelize, DataTypes } from "sequelize";
-const { STRING, INTEGER, DATE, BOOLEAN, NUMBER, DECIMAL, FLOAT } = DataTypes;
+const { STRING, INTEGER, DATE, BOOLEAN, NUMBER, DECIMAL, FLOAT, ARRAY, TEXT } = DataTypes;
 
 const sequelize = new Sequelize("get_pills_pharmacy", "root", "", {
   host: "localhost",
@@ -153,14 +153,27 @@ const Delivery = sequelize.define(
     phone_no: { type: STRING, allowNull: false },
     user_email: { type: STRING, allowNull: false },
     address: { type: STRING, allowNull: false },
-    orderdetails: {type: STRING, allowNull: false},
+    orderdetails: { type: TEXT, allowNull: false },
     totalfee: {type: FLOAT, allowNull: false},
     deliveryfee: {type: FLOAT, allowNull: false},
     drugfee: {type: FLOAT, allowNull: false},
 
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
   },
   {
     tableName: "deliveries",
+    timestamps: true, 
+    createdAt: "createdAt", 
+    updatedAt: "updatedAt", 
   }
 );
 
@@ -210,7 +223,12 @@ LandMarks.belongsTo(Price, {
   as: "prices",
 });
 
-sequelize.sync();
+
+
+
+
+
+// sequelize.sync();
 
 export const models = {
   Location,

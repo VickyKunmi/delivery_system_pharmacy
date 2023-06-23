@@ -71,7 +71,7 @@ export default function TopHeader() {
               <br />
               {/* <Image src={"https://unsplash.com/photos/N3ndgS6RxVc"} alt="image" width={300} height={100}/> */}
 
-              <h1>Add Category</h1>
+              <h1 className={styles.categorytitle}>ADD CATEGORY</h1>
               <div className={styles.itemDisplay}>
                 <label>Title</label>
                 <input

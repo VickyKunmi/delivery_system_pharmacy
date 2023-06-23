@@ -32,4 +32,16 @@
     margin-top:9px;
 }
 
+.orderstat{
+    /* justify-content: end; */
+    margin-top: 400px;
 
+}
+
+.orderstatus{
+    justify-content: end;
+}
+
+.status{
+    justify-content: end;
+}
