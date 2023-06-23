@@ -281,7 +281,7 @@ export default function DeliveryAddress({ location }) {
             <label>Total: GHC</label>{" "}
             <input
               onChange={(e) => setTotalFee(e.target.value)}
-              value={cart.total + selectedLandmarkPrice}
+              value={(cart.total + selectedLandmarkPrice)}
               readOnly
             />
           </div>

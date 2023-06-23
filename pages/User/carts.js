@@ -93,7 +93,7 @@ const Cart = ({ orders }) => {
 
                           <td>
                             <div className={styles.total}>{order.price_symbol}{order.price * order.quantity}</div>
-                          </td>
+                          </td>;
 
                           <td>
                             <button className={styles.delete} onClick={() => handleDelete(order.id)}>Remove</button>
