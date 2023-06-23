@@ -5,7 +5,7 @@
     background-color: rgb(255, 255, 255);
     border: 2px rgb(185, 185, 255) dashed;
     margin: 70px;
-    margin-left: 200px;
+    margin-left: 120%;
 }
 .body{
     display: flex;
@@ -19,7 +19,7 @@
     background-color: rgb(255, 255, 255);
     border: 2px rgb(185, 185, 255) dashed;
     margin: 70px;
-    margin-left: 200px;
+    margin-left:120%;
 
 }
 .items{
@@ -83,7 +83,10 @@
     background-color: rgb(255, 255, 255);
     border: 2px rgb(185, 185, 255) dashed;
     /* margin: 70px; */
-    margin-left: 50px;
+    margin-left: 60px;
+    margin-right: -360px;
+
+
 }
 .info h3{
     margin-left: 20px;
@@ -98,8 +101,9 @@
 
 .btn1 {
     align-items: center;
-    margin: 70px;
-    margin-left: 600px;
+    /* margin: 70px; */
+    margin-left: 120%;
+    /* margin-right:-400px; */
     width: 400px;
     background-color: gold;
     padding: 15px;
