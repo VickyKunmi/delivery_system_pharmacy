@@ -125,8 +125,8 @@ const Detailed = ({ detail }) => {
               {detail.price} {detail.price_symbol}
             </p>
 
-            <p className={styles.subtotal}>subtotal</p>
-            <p className={styles.subprice}>0.50 Cedis</p>
+            {/* <p className={styles.subtotal}>subtotal</p> */}
+            {/* <p className={styles.subprice}>0.50 Cedis</p> */}
           </div>
         ))}
     </>
