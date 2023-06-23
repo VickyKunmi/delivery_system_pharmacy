@@ -1,4 +1,5 @@
 import { getServer } from "@/config";
+import Deliverydetails from "@/pages/User/deliveryDetailscheck";
 import axios from "axios";
 
 
@@ -753,6 +754,157 @@ export async function deleteSingleLandMarks(landmarksId) {
   try {
     console.log(landmarksId, "location delete");
     const res = await axios.delete(`${getServer}/api/Landmarks/single?landmarksId=${landmarksId}`);  
+    if(res && res.status === 200) return true
+  } catch (error) {
+    console.log(error)
+  }
+ 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//helper for DelDetails
+
+
+export const getDelDetails = async () => {
+  const response = await fetch(`${getServer}/api/DelDetails`);
+  const JSON = await response.json();
+  return JSON;
+};
+
+export const getDelDetails_helper = async ({ deliverydetailId }) => {
+  deliverydetailId = deliverydetailId.data;
+  const response = await fetch(
+    `${getServer}/api/DelDetails/single?deliverydetailId=${deliverydetailId}`
+  );
+  const json = await response.json();
+  if (json) return json;
+  return {};
+};
+
+export const addDelDetails = async (formData) => {
+  try {
+    const options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    };
+    console.log(formData, "data");
+    const response = await fetch(`${getServer}/api/DelDetails`, options);
+    // const response = await axios.post(`${getServer}/api/Category`, formData);
+    const json = await response.json();
+    return json;
+  } catch (error) {
+    return error;
+  }
+};
+
+
+export async function updateSingleDelDetails({deliverydetailId, models}){
+    const options = {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ deliverydetailId, models }),
+      };
+      const response = await fetch(`${getServer}/api/DelDetails/single`, options);
+      const json = await response.json();
+      return json;
+}
+
+
+
+export async function deleteSingleDelDetails(deliverydetailsId) {
+  try {
+    console.log(deliverydetailsId, "location delete");
+    const res = await axios.delete(`${getServer}/api/DelDetails/single?deliverydetailsId=${deliverydetailsId}`);  
+    if(res && res.status === 200) return true
+  } catch (error) {
+    console.log(error)
+  }
+ 
+}
+
+
+
+
+
+
+
+//helper for Prescription
+
+
+export const getPrescription = async () => {
+  const response = await fetch(`${getServer}/api/Prescription`);
+  const JSON = await response.json();
+  return JSON;
+};
+
+export const getPrescription_helper = async ({ prescriptionId }) => {
+  prescriptionId = prescriptionId.data;
+  const response = await fetch(
+    `${getServer}/api/Prescription/single?prescriptionId=${prescriptionId}`
+  );
+  const json = await response.json();
+  if (json) return json;
+  return {};
+};
+
+export const addPrescription = async (formData) => {
+  try {
+    const options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    };
+    console.log(formData, "data");
+    const response = await fetch(`${getServer}/api/Prescription`, options);
+    // const response = await axios.post(`${getServer}/api/Category`, formData);
+    const json = await response.json();
+    return json;
+  } catch (error) {
+    return error;
+  }
+};
+
+
+export async function updateSinglePrescription({prescriptionId, models}){
+    const options = {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prescriptionId, models }),
+      };
+      const response = await fetch(`${getServer}/api/Prescription/single`, options);
+      const json = await response.json();
+      return json;
+}
+
+
+
+export async function deleteSinglePrescription(prescriptionId) {
+  try {
+    console.log(prescriptionId, "location delete");
+    const res = await axios.delete(`${getServer}/api/Prescription/single?prescriptionId=${prescriptionId}`);  
     if(res && res.status === 200) return true
   } catch (error) {
     console.log(error)
