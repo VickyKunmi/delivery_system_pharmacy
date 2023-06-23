@@ -1,11 +1,11 @@
-import { UploadImage, updateSingleDrug } from "@/util/helper";
+import { UploadImage, updateSingleDrug, updateSingleFeaturedDrug } from "@/util/helper";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { Message } from "./Message";
 import { Input, Paper } from "@mui/material";
 
 
-export function UpdateDrug({ handleClose, data, cat }) {
+export function UpdateFeaturedDrug({ handleClose, data, cat }) {
   const { id, name, category, description, price_symbol, price, image } = data;
 
   const [newName, setnewName] = useState(name);
@@ -18,8 +18,8 @@ export function UpdateDrug({ handleClose, data, cat }) {
   const router = useRouter();
 
   const handleEditDrug = async (models, id) => {
-    const result = await updateSingleDrug({
-      drugId: id,
+    const result = await updateSingleFeaturedDrug({
+      featuredDrugId: id,
       models,
     });
     if (result.isUpdated) {

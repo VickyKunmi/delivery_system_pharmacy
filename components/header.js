@@ -6,7 +6,7 @@ import { FaShoppingCart } from "react-icons/fa";
 export default function Header() {
   return (
     <div className={styles.content}>
-      <h2>Dashboard</h2>
+      <h2 >Dashboard</h2>
       <div className={styles.item}>
         <div className={styles.first}>
           <h4 className={styles.number}>Total number</h4>

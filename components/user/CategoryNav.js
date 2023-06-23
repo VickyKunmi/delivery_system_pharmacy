@@ -7,7 +7,7 @@ const Category = ({ category, drug }) => {
   return (
     <>
       {/* {drug.map((drugInfo) => ( */}
-        <div>
+        <div className={styles.categorynavbar}>
           {/* {category.length > 0 */}
             {category.map(({ id, title }, a) => (
                 <ul className={styles.listing} key={id}>

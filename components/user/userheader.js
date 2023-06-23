@@ -26,7 +26,7 @@ const Header = () => {
       <div className={styles.item}>
         <ul className={styles.list}>
           <li className={styles.listItem}>
-            <Link clLinkssName={styles.a} href="/User">
+            <Link className={styles.a} href="/User">
               Home
             </Link>
           </li>
@@ -35,8 +35,8 @@ const Header = () => {
               Categories
             </Link>
           </li>
-          <li className={styles.listItem}>Order History</li>
-          <li className={styles.listItem}>Upload Prescription </li>
+          <li className={styles.listItem}><a className={styles.a} href="/User/OrderHistory">Order History</a></li>
+          <li className={styles.listItem}><a className={styles.a} href="#">Upload Prescription</a></li>
         </ul>
       </div>
         <div className={styles.item}>

@@ -72,7 +72,7 @@ const FeaturedDrug = ({ cat }) => {
 
   return (
     <>
-      <Header child={"Drug"}>
+      <Header child={"Featured Drug"}>
         <div className={styles.up}>
           {savedNotify && <Message info={"Added successfully"} />}
           <form onSubmit={handleAdd}>
@@ -129,7 +129,7 @@ const FeaturedDrug = ({ cat }) => {
                   >
                     <option></option>
                     <option>$</option>
-                    <option>Cedis</option>
+                    <option>GH₵</option>
                     <option>#</option>
                   </select>
                 </div>

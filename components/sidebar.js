@@ -17,8 +17,8 @@ export default function Sidebar() {
         className={styles.image}
         src={"/../public/logo.png"}
         alt="logo"
-        width={180}
-        height={150}
+        width={100}
+        height={100}
       />
       <div className={styles.list}>
         <ul>

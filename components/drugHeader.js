@@ -129,7 +129,7 @@ const Category = ({ cat }) => {
                   >
                     <option></option>
                     <option>$</option>
-                    <option>Cedis</option>
+                    <option>GH₵</option>
                     <option>#</option>
                   </select>
                 </div>
