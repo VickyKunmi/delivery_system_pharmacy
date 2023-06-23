@@ -141,6 +141,7 @@ export const getUsers = async () => {
 
 export const getUser_helper = async ({ userId }) => {
   userId = userId.data;
+  console.log(userId, 'user id')
   const response = await fetch(
     `${getServer}/api/User/single?userId=${userId}`
   );
@@ -326,7 +327,7 @@ export async function updateSingleFeaturedDrug({featuredDrugId, models}){
 
 export async function deleteSingleFeaturedDrug(featuredDrugId) {
   try {
-    // console.log(featuredDrugId, "category delete");
+    console.log(featuredDrugId, "category delete");
     const res = await axios.delete(`${getServer}/api/FeaturedDrug/single?featuredDrugId=${featuredDrugId}`);  
     if(res && res.status === 200) return true
   } catch (error) {
@@ -484,6 +485,274 @@ export async function deleteSingleOrderDetail(orderdetailId) {
   try {
     console.log(orderdetailId, "order delete");
     const res = await axios.delete(`${getServer}/api/OrderDetails/single?orderdetailId=${orderdetailId}`);  
+    if(res && res.status === 200) return true
+  } catch (error) {
+    console.log(error)
+  }
+ 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//helper for delivery
+
+export const getDeliveries = async () => {
+  const response = await fetch(`${getServer}/api/Delivery`);
+  const JSON = await response.json();
+  return JSON;
+};
+
+export const getDelivery_helper = async ({ deliveryId }) => {
+  deliveryId = deliveryId.data;
+  const response = await fetch(
+    `${getServer}/api/Delivery/single?deliveryId=${deliveryId}`
+  );
+  const json = await response.json();
+  if (json) return json;
+  return {};
+};
+
+export const addDelivery = async (formData) => {
+  try {
+    const options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    };
+    console.log(formData, "data");
+    const response = await fetch(`${getServer}/api/Delivery`, options);
+    // const response = await axios.post(`${getServer}/api/Category`, formData);
+    const json = await response.json();
+    return json;
+  } catch (error) {
+    return error;
+  }
+};
+
+
+export async function updateSingleDelivery({deliveryId, models}){
+    const options = {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ deliveryId, models }),
+      };
+      const response = await fetch(`${getServer}/api/Delivery/single`, options);
+      const json = await response.json();
+      return json;
+}
+
+
+
+export async function deleteSingleDelivery(deliveryId) {
+  try {
+    console.log(deliveryId, "Delivery delete");
+    const res = await axios.delete(`${getServer}/api/Delivery/single?deliveryId=${deliveryId}`);  
+    if(res && res.status === 200) return true
+  } catch (error) {
+    console.log(error)
+  }
+ 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//helper for Location
+
+export const getLocation = async () => {
+  const response = await fetch(`${getServer}/api/Location`);
+  const JSON = await response.json();
+  return JSON;
+};
+
+export const getLocation_helper = async ({ categoryId }) => {
+  locationId = locationId.data;
+  const response = await fetch(
+    `${getServer}/api/Location/single?locationId=${locationId}`
+  );
+  const json = await response.json();
+  if (json) return json;
+  return {};
+};
+
+export const addLocation = async (formData) => {
+  try {
+    const options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    };
+    console.log(formData, "data");
+    const response = await fetch(`${getServer}/api/Location`, options);
+    // const response = await axios.post(`${getServer}/api/Category`, formData);
+    const json = await response.json();
+    return json;
+  } catch (error) {
+    return error;
+  }
+};
+
+
+export async function updateSingleLocation({locationId, models}){
+    const options = {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ locationId, models }),
+      };
+      const response = await fetch(`${getServer}/api/Location/single`, options);
+      const json = await response.json();
+      return json;
+}
+
+
+
+export async function deleteSingleLocation(locationId) {
+  try {
+    console.log(locationId, "location delete");
+    const res = await axios.delete(`${getServer}/api/Location/single?LocationId=${locationId}`);  
+    if(res && res.status === 200) return true
+  } catch (error) {
+    console.log(error)
+  }
+ 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//helper for Landmarks
+
+export const getLandMarks = async () => {
+  const response = await fetch(`${getServer}/api/Landmarks`);
+  const JSON = await response.json();
+  return JSON;
+};
+
+export const getLandMarks_helper = async ({ landmarksId }) => {
+  landmarksId = landmarksId.data;
+  const response = await fetch(
+    `${getServer}/api/Landmarks/single?landmarksId=${landmarksId}`
+  );
+  const json = await response.json();
+  if (json) return json;
+  return {};
+};
+
+export const addLandMarks = async (formData) => {
+  try {
+    const options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    };
+    console.log(formData, "data");
+    const response = await fetch(`${getServer}/api/Landmarks`, options);
+    // const response = await axios.post(`${getServer}/api/Category`, formData);
+    const json = await response.json();
+    return json;
+  } catch (error) {
+    return error;
+  }
+};
+
+
+export async function updateSingleLandMarks({landmarksId, models}){
+    const options = {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ landmarksId, models }),
+      };
+      const response = await fetch(`${getServer}/api/Landmarks/single`, options);
+      const json = await response.json();
+      return json;
+}
+
+
+
+export async function deleteSingleLandMarks(landmarksId) {
+  try {
+    console.log(landmarksId, "location delete");
+    const res = await axios.delete(`${getServer}/api/Landmarks/single?landmarksId=${landmarksId}`);  
     if(res && res.status === 200) return true
   } catch (error) {
     console.log(error)
