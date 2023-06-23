@@ -124,7 +124,16 @@ export default function Rider({ records }) {
   );
 }
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (ctx) => {
+  const myCookie = ctx.req?.cookies || "";
+  if(myCookie.token !== process.env.TOKEN){
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      }
+    }
+  }
   const res = await fetch(`${getServer}/api/Rider`);
   const data = await res.json();
   if (res.ok && data.length > 0) {
