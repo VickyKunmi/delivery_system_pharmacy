@@ -115,7 +115,7 @@ const Cart = ({ orders }) => {
             </div>
 
             <div className={styles.totalText}>
-              <b className={styles.totalTextTitle}>Delivery fee</b>0.00 Cedis
+              <b className={styles.totalTextTitle}>Delivery fee</b>{cart.deliveryFee}
             </div>
 
             <div className={styles.totalText}>

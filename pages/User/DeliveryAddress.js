@@ -9,108 +9,136 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-places-autocomplete";
+import { useDispatch, useSelector } from "react-redux";
+import { getServer } from "@/config";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { addDelivery } from "@/util/helper";
+// import { updateDeliveryFee } from "@/redux/cartSlice";
+import { addDrug, updateDeliveryFee, updateTotalFee } from "@/redux/cartSlice";
+import { MenuItem, Select } from "@mui/material";
 
-export default function DeliveryAddress() {
-  
+export default function DeliveryAddress({ location }) {
+  const [name, setName] = useState("");
+  const [phone_no, setPhone_no] = useState("");
+  const [user_email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+  const [totalfee, setTotalFee] = useState(0);
+  const [deliveryfee, setDeliveryFee] = useState(0);
+  const [drugfee, setDrugFee] = useState(0);
+  const [orderdetails, setOrderDetails] = useState([]);
+  const router = useRouter();
+  const [savedNotify, setSavedNotify] = useState("");
 
-    const [deliveryAddress, setDeliveryAddress] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState("");
+  const [landmarks, setLandmarks] = useState([]);
+  const [selectedLandmark, setSelectedLandmark] = useState({});
+  const [selectedLandmarkPrice, setSelectedLandmarkPrice] = useState(0);
 
-  const handlePlaceSelect = (place) => {
-    geocodeByAddress(place.formatted_address)
-      .then((results) => {
-        const address = results[0].formatted_address;
-        setDeliveryAddress(address);
-      })
-      .catch((error) => console.error("Error", error));
-  };
-
-  const mapRef = useRef(null);
-
-  const initAutocomplete = () => {
-    const map = new google.maps.Map(document.getElementById("map"), {
-      center: { lat: -33.8688, lng: 151.2195 },
-      zoom: 13,
-      mapTypeId: "roadmap",
-    });
-
-
-    const input = document.getElementById("pac-input");
-    const searchBox = new google.maps.places.SearchBox(input);
-
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-    map.addListener("bounds_changed", () => {
-      searchBox.setBounds(map.getBounds());
-    });
-
-    let markers = [];
-
-    searchBox.addListener("places_changed", () => {
-      const places = searchBox.getPlaces();
-
-      if (places.length === 0) {
-        return;
-      }
-
-      markers.forEach((marker) => {
-        marker.setMap(null);
-      });
-      markers = [];
-
-      const bounds = new google.maps.LatLngBounds();
-
-      places.forEach((place) => {
-        if (!place.geometry || !place.geometry.location) {
-          console.log("Returned place contains no geometry");
-          return;
-        }
-
-        const icon = {
-          url: place.icon,
-          size: new google.maps.Size(71, 71),
-          origin: new google.maps.Point(0, 0),
-          anchor: new google.maps.Point(17, 34),
-          scaledSize: new google.maps.Size(25, 25),
-        };
-
-        markers.push(
-          new google.maps.Marker({
-            map,
-            icon,
-            title: place.name,
-            position: place.geometry.location,
-          })
-        );
-
-        if (place.geometry.viewport) {
-          bounds.union(place.geometry.viewport);
-        } else {
-          bounds.extend(place.geometry.location);
-        }
-      });
-
-      map.fitBounds(bounds);
-    });
-  };
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
 
   useEffect(() => {
-    if (window.google) {
-      initAutocomplete();
-    } else {
-      const script = document.createElement("script");
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${'AIzaSyB8dhzyIVNBptL91PB1oCY6Y-4R9oVodKI'}&libraries=places`;
-      script.onload = initAutocomplete;
-      document.head.appendChild(script);
+    const storedCart = sessionStorage.getItem("cart");
+    if (storedCart) {
+      const parsedCart = JSON.parse(storedCart);
+      if (cart.drugs.length === 0) {
+        parsedCart.drugs.forEach((drug) => {
+          dispatch(addDrug(drug));
+        });
+      }
     }
   }, []);
 
+  const handleAddAddressDetails = async (model) => {
+    const result = await addDelivery(model);
+    console.log(result, "result");
+    const { isSaved } = result;
+    if (isSaved) {
+      setSavedNotify(true);
+      setTimeout(() => {
+        router.replace(`${getServer}/User/checkout`);
+        setSavedNotify(false);
+      }, 1000);
+    }
+  };
 
+  const handleAdd = async (e) => {
+    e.preventDefault();
+    const everything = JSON.parse( sessionStorage.getItem("cart"))
+    console.log(everything, "everything")
 
+    try {
+      const model = {
+        name,
+        phone_no,
+        user_email,
+        address,
+        orderdetails:JSON.stringify(everything.drugs),
+        totalfee: (cart.total + selectedLandmarkPrice),
+      deliveryfee: selectedLandmarkPrice,
+      drugfee: cart.total,
+        // ordername,
+      };
+      setDrugFee(cart.total);
+      setDeliveryFee(selectedLandmarkPrice);
+      setTotalFee(cart.total + selectedLandmarkPrice);
+      await handleAddAddressDetails(model);
+      console.log(model, "models")
+      const drugFee = cart.total;
+      const deliveryFee = selectedLandmarkPrice; // Use selectedLandmarkPrice as the delivery fee
+      const totalFee = drugFee + deliveryFee;
 
+      // setOrderDetails(`${cart.quantity}x ${cart.name}`);
+      // Dispatch the action to update the delivery fee and total fee in the Redux store
+      dispatch(updateDeliveryFee(deliveryFee));
+      dispatch(updateTotalFee(totalFee));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
+  useEffect(() => {
+    const fetchLandmarks = async () => {
+      if (selectedLocation) {
+        try {
+          const response = await axios.get(
+            `/api/Landmarks/${encodeURIComponent(selectedLocation)}`
+          );
+          setLandmarks(response.data);
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        setLandmarks([]);
+      }
+    };
 
+    fetchLandmarks();
+  }, [selectedLocation]);
 
-  // };
+  const handleLocationChange = async (event) => {
+    const selectedLocationId = event.target.value;
+    setSelectedLocation(selectedLocationId);
+
+    try {
+      const response = await axios.get(
+        `/api/Landmarks/${encodeURIComponent(selectedLocationId)}`
+      );
+      setLandmarks(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleLandM = (value) => {
+    console.log(value, landmarks);
+    const selected = landmarks.filter((landmark) => landmark.id === value);
+    const { title } = selected[0];
+    const { price } = selected[0].prices;
+    setSelectedLandmarkPrice(price);
+    setAddress(title);
+  };
 
   return (
     <>
@@ -118,175 +146,155 @@ export default function DeliveryAddress() {
         <title>Get Pills</title>
         <meta name="description" content="Get pills, any drug at all" />
         <link rel="icon" href="/GP violet.png" />
-
-        <Script id="google-maps-script" onLoad={initAutocomplete}>
-          {`
-    function initAutocomplete() {
-      const map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: -33.8688, lng: 151.2195 },
-        zoom: 13,
-        mapTypeId: "roadmap",
-      });
-      // Create the search box and link it to the UI element.
-      const input = document.getElementById("pac-input");
-      const searchBox = new google.maps.places.SearchBox(input);
-
-      map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-      // Bias the SearchBox results towards the current map's viewport.
-      map.addListener("bounds_changed", () => {
-        searchBox.setBounds(map.getBounds());
-      });
-
-      let markers = [];
-
-      // Listen for the event fired when the user selects a prediction and retrieve
-      // more details for that place.
-      searchBox.addListener("places_changed", () => {
-        const places = searchBox.getPlaces();
-
-        if (places.length === 0) {
-          return;
-        }
-
-        // Clear out the old markers.
-        markers.forEach((marker) => {
-          marker.setMap(null);
-        });
-        markers = [];
-
-        // For each place, get the icon, name, and location.
-        const bounds = new google.maps.LatLngBounds();
-
-        places.forEach((place) => {
-          if (!place.geometry || !place.geometry.location) {
-            console.log("Returned place contains no geometry");
-            return;
-          }
-
-          const icon = {
-            url: place.icon,
-            size: new google.maps.Size(71, 71),
-            origin: new google.maps.Point(0, 0),
-            anchor: new google.maps.Point(17, 34),
-            scaledSize: new google.maps.Size(25, 25),
-          };
-
-          // Create a marker for each place.
-          markers.push(
-            new google.maps.Marker({
-              map,
-              icon,
-              title: place.name,
-              position: place.geometry.location,
-            })
-          );
-          if (place.geometry.viewport) {
-            // Only geocodes have viewport.
-            bounds.union(place.geometry.viewport);
-          } else {
-            bounds.extend(place.geometry.location);
-          }
-        });
-        map.fitBounds(bounds);
-      });
-    }
-
-    window.initAutocomplete = initAutocomplete;
-  `}
-        </Script>
       </Head>
+      <Header />+{" "}
       <div className={styles.container}>
-        <Header />
-        <div className={styles.orderinput}>
-          <h1 className={styles.title}>Delivery Address</h1>
+        <form onSubmit={handleAdd}>
+          <div className={styles.orderinput}>
+            <h1 className={styles.title}>Delivery & Price Details</h1>
+            {/* {customer.map((details) => ( */}
 
-          <label htmlFor="first Name" className={styles.label}>
-            First Name
-          </label>
-          <input
-            type="text"
-            id="firstname"
-            name="firstname"
-            className={styles.first}
-            placeholder="Hayford"
-            required
-          />
+            <label htmlFor="Name" className={styles.label}>
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              className={styles.first}
+              placeholder="Hayford Agei"
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
 
-          <label htmlFor="Last Name" className={styles.label}>
-            Last Name
-          </label>
-          <input
-            type="text"
-            id="Lastname"
-            name="lastname"
-            className={styles.last}
-            placeholder="Dablah"
-            required
-          />
+            <label htmlFor="Last Name" className={styles.label}>
+              Last Name
+            </label>
+            <input
+              type="email"
+              id="Email"
+              name="email"
+              className={styles.last}
+              // defaultValue={details.first_name}
+              placeholder="dablah@gmail.com"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
 
-          <label htmlFor="Contact" className={styles.label}>
-            Contact
-          </label>
-          <input
-            type="text"
-            id="Lastname"
-            name="lastname"
-            className={styles.contact}
-            placeholder="e.g (0540001112)"
-            required
-          />
+            <label htmlFor="Contact" className={styles.label}>
+              Contact
+            </label>
+            <input
+              type="text"
+              id="Lastname"
+              name="lastname"
+              className={styles.contact}
+              placeholder="e.g (0540001112)"
+              onChange={(e) => setPhone_no(e.target.value)}
+              required
+            />
 
-          <label htmlFor="Address" className={styles.label}>
-            {" "}
-            Delivery Address
-          </label>
-          {/* <Autocomplete
-            // value={deliveryAddress}
-            onPlaceSelected={handlePlaceSelect}
-            types = {["geocode"]}
-            // types={["address", "(regions)"]}
-            options={{
-            //   types: ["address", "(regions)"],
-              componentRestrictions: { country: "GH" },
-            }}
-            id="Address"
-            name="Address"
-            className={styles.address}
-            placeholder="Enter your Delivery Address"
-            apiKey="AIzaSyAVvdmqcgtMUrZL7ftwUaGZJ94t03UXwsU"
-            // onPlaceSelected={(place) => {
-            //     console.log(place);
-            // }}
-            required
-          /> */}
+            <label htmlFor="Address" className={styles.label}>
+              {" "}
+              Delivery Address
+            </label>
 
-          <input
-            type="text"
-            id="pac-input"
-            className={styles.address}
-            placeholder="Enter your Delivery Address"
-            required
-          />
-          <div id="map" ref={mapRef} className={styles.map}></div>
+            <Select
+              onChange={handleLocationChange}
+              className={styles.address}
+              value={selectedLocation}
+            >
+              {location.map((address) => (
+                <MenuItem key={address.id} value={address.id}>
+                  {address.title}
+                </MenuItem>
+              ))}
+            </Select>
 
-          
+            <label htmlFor="Address" className={styles.label}>
+              Landmarks
+            </label>
+            <Select
+              className={styles.address}
+              value={address}
+              onChange={(e) => handleLandM(e.target.value)}
+            >
+              {landmarks.map((landmark) => (
+                <MenuItem key={landmark.id} value={landmark.id}>
+                  {landmark.title} | price: {landmark.prices.price}
+                </MenuItem>
+              ))}
+            </Select>
 
-          <button className={styles.button}>CHECKOUT!</button>
-          {/* Your other components and buttons */}
+            <button className={styles.button} type="submit">
+              CHECKOUT!
+            </button>
+          </div>
+          <div className={styles.ordrec}>
+            <h1 className={styles.Heading}>Order Details</h1>
+            {cart.drugs.map((order, index) => (
+              <div key={index}>
+                <input
+                 onChange={(e) => {
+                  setOrderDetails(`${order.quantity}x ${order.name}`);
+                
+                }}
+                  className={styles.item}
+                  type="text"
+                  value={`${order.quantity}x ${order.name}`}
+                />
+
+                {/* <input
+                  className={styles.itemprice}
+                  type="text"
+                  value=
+              // onChange={(e) => setPhone_no(e.target.value)}
+
+                /> */}
+                <h4>{order.price * order.quantity}</h4>
+              </div>
+            ))}
+
+            <></>
+          </div>
+        </form>
+
+        <div className={styles.orderpop}>
+          <div>
+            <label>Delivery fee: GHC</label>{" "}
+            <input
+              onChange={(e) => setDeliveryFee(e.target.value)}
+              value={selectedLandmarkPrice}
+              readOnly
+            />
+          </div>
+          <div>
+            <label>Item Total Price: GHC</label>{" "}
+            <input
+              value={cart.total}
+              onChange={(e) => setDrugFee(e.target.value)}
+              readOnly
+            />
+          </div>
+          <h4 readOnly>Subtotal: GHC 0.00</h4>
+          <div>
+            <label>Total: GHC</label>{" "}
+            <input
+              onChange={(e) => setTotalFee(e.target.value)}
+              value={cart.total + selectedLandmarkPrice}
+              readOnly
+            />
+          </div>
         </div>
-        <Footer />
       </div>
+      <Footer />
     </>
   );
 }
 
-{
-  /* <Auto */
-}
-
-//         </div>
-//         <Footer />
-//       </div>
-//     </>
-//   );
-// }
+export const getServerSideProps = async () => {
+  const locationres = await axios.get(`${getServer}/api/Location`);
+  // const locationData = await locationres.json();
+  const landmarkres = await axios.get(`${getServer}/api/Landmarks`);
+  return { props: { location: locationres.data, landmark: landmarkres.data } };
+};

@@ -27,7 +27,8 @@ export default function Index({ category, drugs }) {
           <div></div>
         </div>
       </div>
-      {/* <Footer/> */}
+
+      <Footer/>
     </div>
   );
 }

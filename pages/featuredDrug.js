@@ -19,6 +19,8 @@ import { UpdateDrug } from "@/components/updateDrug";
 import { ViewDrug } from "@/components/viewDrug";
 import axios from "axios";
 import FeaturedDrug from "@/components/featuredDrugHeader";
+import { UpdateFeaturedDrug } from "@/components/updateFeaturedDrug";
+import { ViewFeaturedDrug } from "@/components/viewFeaturedDrug";
 
 export default function drug({ cat, records }) {
   const deleteId = useSelector((state) => state.app.client.deleteId);
@@ -30,6 +32,8 @@ export default function drug({ cat, records }) {
   const deletehandler = async () => {
     if (deleteId) {
       const isDeleted = await deleteSingleFeaturedDrug(deleteId);
+      console.log(isDeleted, 'ok --------')
+
       if (isDeleted) {
         router.replace(`${getServer}/featuredDrug`);
       }
@@ -47,7 +51,7 @@ export default function drug({ cat, records }) {
 
   const onUpdate = async (id) => {
     const results = await getFeaturedDrug_helper({ featuredDrugId: id });
-    if (results) return setDrugData([results]);
+    if (results) return setDrugData(results);
   };
 
   const onDelete = (id) => {
@@ -128,9 +132,9 @@ export default function drug({ cat, records }) {
                             title={"View Drug details"}
                             buttonTitle={"View"}
                             className={styles.view}
-                            callbackfun={() => onUpdate(id)}
+                            callbackfun={onUpdate}
                           >
-                            <ViewDrug data={drug_data[0]} />
+                            <ViewFeaturedDrug data={drug_data[0]} />
                             {/* {drug_data.length > 0 && <ViewDrug data={drug_data[0]} />} */}
                           </CrudModal>
                           <CrudModal
@@ -141,7 +145,7 @@ export default function drug({ cat, records }) {
                             className={styles.edit}
                             callbackfun={onUpdate}
                           >
-                            <UpdateDrug data={drug_data[0]} cat={cat} />
+                            <UpdateFeaturedDrug data={drug_data[0]} cat={cat} />
                           </CrudModal>
                           <button
                             className={styles.delete}

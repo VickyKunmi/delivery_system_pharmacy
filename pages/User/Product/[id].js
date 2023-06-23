@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import { addDrug } from "@/redux/cartSlice";
 
 const Product = ({ featured }) => {
-  const { name, image, price_symbol, price, description, id } = featured;
+  const { name, image, price_symbol, price, description, id } = featured[0];
   const [Newname, setName] = useState(name);
   const [Newimage, setImage] = useState(image);
   const [Newprice_symbol, setPrice_symbol] = useState(price_symbol);
@@ -20,9 +20,10 @@ const Product = ({ featured }) => {
   const [quantity, setQuantity] = useState(1);
   const [savedNotify, setSavedNotify] = useState(null);
   const router = useRouter();
+  console.log(featured, "featured")
   // const dispatch = useDispatch();
   const dispatch = useDispatch();
-
+  console.log(image, "image")
   
   const handleAddCart = async (model) => {
     const result = await addOrderdetail(model);
@@ -106,6 +107,7 @@ export const getServerSideProps = async (context) => {
   const res = await axios.get(
     `${getServer}/api/FeaturedDrug/single?featuredDrugId=${id}`
   );
+  console.log(res.data, "res data");
   return {
     props: {
       featured: res.data,

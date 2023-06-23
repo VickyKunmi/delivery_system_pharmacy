@@ -1,5 +1,6 @@
 import styles from "../../../styles/user/Category.module.css";
 import Header from "../../../components/user/userheader";
+import Footer from "../../../components/user/userfooter";
 import Image from "next/image";
 import Category from "@/components/user/CategoryNav";
 import axios from "axios";
@@ -8,10 +9,11 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addDrug } from "@/redux/cartSlice";
+import Link from "next/link";
 
 const Product = ({ category, drug }) => {
   const dispatch = useDispatch();
-
+  const router = useRouter();
   // const handleClick = () => {
   //   dispatch(addDrug(...name, price, quantity))
   // }
@@ -27,26 +29,33 @@ const Product = ({ category, drug }) => {
         <div className={styles.drugicons}>
           {drug.map((drugInfo) => (
             <div className={styles.drugelements} key={drugInfo.id}>
-              <a href={`/User/Categorydrugs/${drugInfo.id}`}>
+              <Link href={`/User/Categorydrugs/${drugInfo.id}`}>
                 <Image
                   src={drugInfo.image}
                   alt="drug icons"
                   width={200}
                   height={200}
+                  style={{ marginLeft: "10%" }}
                 />
-              </a>
+              </Link>
               <h1 className={styles.title}>{drugInfo.name}</h1>
               <p className={styles.category}>{drugInfo.category}</p>
               {/* <p className={styles.description}>Lorem ipsum dolor sit amer consectur </p> */}
-              <span className={styles.price}>
-                {drugInfo.price_symbol}
-                {drugInfo.price}
-              </span>
-              <button className={styles.cartbutton}>Add to Cart</button>
+              <p className={styles.price}>
+                {" "}
+                {drugInfo.price} {drugInfo.price_symbol}{" "}
+              </p>
+              {/* <Link
+                href={`/User/Categorydrugs/${drugInfo.id}`}
+                style={{ textDecoration: "none" }}
+              > */}
+                <button className={styles.cartbutton}>Add to Cart</button>
+              {/* </Link> */}
             </div>
           ))}
         </div>
       </div>
+      {/* <Footer/> */}
     </>
   );
 };

@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { getServer } from "@/config";
 import { Message } from "@/components/Message";
+import Link from "next/link";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -31,7 +32,7 @@ export default function Login() {
         if (errData) {
           setSavedNotify(true);
           setTimeout(() => {
-            router.push("/customer/login");
+            router.push("/Users/carts");
           }, 1000);
         }
       }
@@ -86,6 +87,7 @@ export default function Login() {
                 </Button>
               </Grid>
               <Grid item xs={12}>
+                <Link href={`${getServer}/User/sign_up`}>Don't have an account</Link>
                 <Button variant="text" color="primary" fullWidth>
                   Forgot Password?
                 </Button>

@@ -13,6 +13,7 @@ export default function SignUp() {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [savedNotify, setSavedNotify] = useState(null);
+  const [error, setError] = useState("");
 
   const router = useRouter();
 
@@ -29,6 +30,12 @@ export default function SignUp() {
 
   const handleAddd = async (e) => {
     e.preventDefault();
+    if (phone_number.length !== 10) {
+      setError("Phone number must be exactly 10 digits long.");
+      alert("Only 10 digits are allowed")
+      return;
+    }
+   
     try {
       const model = {
         first_name,

@@ -38,7 +38,7 @@ export default function drug({ cat, records }) {
 
   const onUpdate = async (id) => {
     const results = await getDrug_helper({ drugId: id });
-    if (results) return setDrugData([results]);
+    if (results) return setDrugData(results);
   };
 
   
