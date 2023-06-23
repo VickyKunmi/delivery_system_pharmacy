@@ -35,11 +35,11 @@ export async function getDrug(req, res) {
     }
   }
 
-  export async function getOneDrug(req, res) {
+  export async function getOneDrug(req, res, ) {
     const {featuredDrugId} = req.query;
     try {
       if (featuredDrugId) {
-        const drug = await FeaturedDrugs.findOne({ where: { id: featuredDrugId } });
+        const drug = await FeaturedDrugs.findAll({ where: { id: featuredDrugId } });
         if (drug) return res.status(200).send(drug);
       }
       // res.status(404).json({ error: "drug not selected" });
@@ -71,10 +71,10 @@ export async function getDrug(req, res) {
   
   export async function putDrug(req, res) {
     try {
-      const { models, drugId } = req.body;
-      if (drugId) {
+      const { models, featuredDrugId } = req.body;
+      if (featuredDrugId) {
         const drug = await FeaturedDrugs.findOne({
-          where: { id: drugId },
+          where: { id: featuredDrugId },
         });
         if (drug) {
           drug.set(models);
@@ -96,13 +96,14 @@ export async function getDrug(req, res) {
   
   //Controller for delete method
   
+  
   export async function deleteDrug(req, res) {
     try {
-      const {drugId}  = req.query;
-      console.log(drugId, 'from query param')
-      if (parseInt(drugId)) {
+      const {featuredDrugId}  = req.query;
+      console.log(featuredDrugId, 'from query param')
+      if (parseInt(featuredDrugId)) {
         const drug = await FeaturedDrugs.findOne({
-          where: { id: drugId },
+          where: { id: featuredDrugId },
         });
         if (drug) {
           await drug.destroy();
@@ -112,7 +113,7 @@ export async function getDrug(req, res) {
         }
        
       }
-      console.log(drugId, "error");
+      console.log(featuredDrugId, "error");
       return res
         .status(404)
         .json({ message: "drug not selected", isDeleted: false });

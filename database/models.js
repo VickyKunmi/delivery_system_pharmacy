@@ -1,5 +1,5 @@
 import { Sequelize, DataTypes } from "sequelize";
-const { STRING, INTEGER, DATE, BOOLEAN, NUMBER, DECIMAL } = DataTypes;
+const { STRING, INTEGER, DATE, BOOLEAN, NUMBER, DECIMAL, FLOAT } = DataTypes;
 
 const sequelize = new Sequelize("get_pills_pharmacy", "root", "", {
   host: "localhost",
@@ -38,13 +38,30 @@ const Riders = sequelize.define(
 );
 
 const Users = sequelize.define(
-  "users",
+  "user",
   {
     first_name: { type: STRING, allowNull: false },
     last_name: { type: STRING, allowNull: false },
     password: { type: STRING, allowNull: false },
-    phone_number: { type: STRING, allowNull: false },
-    email: { type: STRING, allowNull: false, validate: { isEmail: true } },
+    phone_number: {
+      type: STRING,
+      allowNull: false,
+      validate: {
+        len: {
+          args: [10],
+          msg: "Phone number must be exactly 10 digits long.",
+        },
+      },
+    },
+    email: {
+      type: STRING,
+      allowNull: false,
+      validate: {
+        isEmail: {
+          msg: "Invalid email format.",
+        },
+      },
+    },
   },
   {
     tableName: "user",
@@ -56,7 +73,7 @@ const Drugs = sequelize.define(
   {
     name: { type: STRING, allowNull: false },
     description: { type: STRING, allowNull: false },
-    price: { type: DECIMAL, allowNull: false },
+    price: { type: FLOAT, allowNull: false },
     category: { type: STRING, allowNull: false },
     price_symbol: { type: STRING, allowNull: false },
     image: { type: STRING, allowNull: false },
@@ -115,23 +132,90 @@ const Orders = sequelize.define(
 );
 
 const FeaturedDrugs = sequelize.define(
-  "featuredDrugs",
+  "featured_drugs",
   {
     name: { type: STRING, allowNull: false },
     description: { type: STRING, allowNull: false },
-    price: { type: DECIMAL, allowNull: false },
+    price: { type: FLOAT, allowNull: false },
     category: { type: STRING, allowNull: false },
     price_symbol: { type: STRING, allowNull: false },
     image: { type: STRING, allowNull: false },
   },
   {
-    tableName: "featuredDrugs",
+    tableName: "featured_drugs",
   }
 );
+
+const Delivery = sequelize.define(
+  "deliveries",
+  {
+    name: { type: STRING, allowNull: false },
+    phone_no: { type: STRING, allowNull: false },
+    user_email: { type: STRING, allowNull: false },
+    address: { type: STRING, allowNull: false },
+    orderdetails: {type: STRING, allowNull: false},
+    totalfee: {type: FLOAT, allowNull: false},
+    deliveryfee: {type: FLOAT, allowNull: false},
+    drugfee: {type: FLOAT, allowNull: false},
+
+  },
+  {
+    tableName: "deliveries",
+  }
+);
+
+const Location = sequelize.define(
+  "locations",
+  {
+    title: { type: STRING, allowNull: false },
+    description: { type: STRING, allowNull: false },
+  },
+  {
+    tableName: "locations",
+  }
+);
+
+const LandMarks = sequelize.define(
+  "landmarks",
+  {
+    title: { type: STRING, allowNull: false },
+    description: { type: STRING, allowNull: false },
+    locationId: { type: INTEGER, allowNull: false },
+    priceId: { type: INTEGER, allowNull: false },
+  },
+  {
+    tableName: "landmarks",
+  }
+);
+
+const Price = sequelize.define(
+  "prices",
+  {
+    price: { type: FLOAT, allowNull: false },
+  },
+  {
+    tableName: "prices",
+  }
+);
+
+Location.hasMany(LandMarks);
+LandMarks.belongsTo(Location, {
+  foreignKey: "locationId",
+  as: "locations",
+});
+
+Price.hasMany(LandMarks);
+LandMarks.belongsTo(Price, {
+  foreignKey: "priceId",
+  as: "prices",
+});
 
 sequelize.sync();
 
 export const models = {
+  Location,
+  LandMarks,
+  Price,
   Categories,
   Riders,
   Users,
@@ -140,5 +224,6 @@ export const models = {
   Carts,
   FeaturedDrugs,
   OrderDetails,
+  Delivery,
   sequelize,
 };

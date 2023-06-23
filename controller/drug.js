@@ -36,8 +36,8 @@ export async function getDrug(req, res) {
     }
   }
 
-  export async function getOneDrug(req, res) {
-    const {drugId} = req.query;
+  export async function getOneDrug(req, res, drugId) {
+    // const {drugId} = req.query;
 
     try {
       if (drugId) {
