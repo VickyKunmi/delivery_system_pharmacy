@@ -1,0 +1,52 @@
+.container{
+
+    margin-top: 150px;
+    margin: 50px;
+    padding:80px;
+    margin-bottom: 70px;
+    /* margin-left:60px; */
+}
+
+.table{
+    width: 105%;
+    border-spacing: 10px;
+    /* align-content: center; */
+    font-family: "Avenir Next", "Avenir", sans-serif;
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    align-self: center;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    /* margin-right:; */
+}
+
+.table tr{
+    text-align: center;
+}
+
+.button{
+
+    margin-top:20px;
+    background-color: white;
+    color: blueviolet;
+    font-weight: bold;
+
+}
+
+.delete{
+    transition: all .5s ease;
+    color:  rgb(207, 170, 255);
+    border: 2px solid  rgb(207, 170, 255);
+    background-color : transparent;
+}
+.delete:hover{
+    color: white;
+    background-color: rgb(207, 170, 255);
+    cursor: pointer;
+}
+/* .historytable{ */
+    /* background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    margin-right:; */
+/* } */

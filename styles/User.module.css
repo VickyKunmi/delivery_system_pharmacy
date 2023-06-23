@@ -1,4 +1,47 @@
-.containers {
+.container {
     display: flex;
     margin-top: 0;
+}
+.tableDetails{
+    margin-left: 25%;
+    margin-top: 18%;
+    background-color: #fff;
+    width: 80%;
+    border-radius: 10px; 
+    height: auto;
+}
+
+.table tbody {
+    background-color: #fff;
+
+}
+
+.table tr {
+    /* background-color: rgb(255, 255, 255); */
+    text-align: center;
+
+}
+
+.header {
+    background-color: green;
+    border: 0;
+    height: 60px;
+    color: #ffffff;
+    font-size: large;
+    font-weight: bolder;
+    margin-bottom: 20px;
+}
+
+.table tr td {
+    padding: 10px;
+}
+
+.table {
+    margin-top: 10px;
+    margin-left: 5px;
+    table-layout: fixed;
+    width: 95%;
+    border: 3px solid transparent;
+    border-collapse: collapse;
+    /* border-spacing: 0 15px; */
 }

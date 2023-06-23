@@ -1,0 +1,63 @@
+.container{
+margin-top:-100px;
+/* justify-content: center; */
+/* margin-bottom: 100px; */
+}
+
+.receiptbox{
+padding:40px;
+align-self: center;
+align-items: center;
+justify-items: center;
+justify-content: center;
+height:100%;
+width:700px;
+border: 5px;
+margin-top: 300px;
+margin-left:450px;
+background-color: white;
+box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+margin-bottom: -220px;
+}
+
+.itemprice{
+    text-align: end;
+    margin-top: -33px;
+    margin-right: 20px;
+}
+
+.subtotalprice{
+    text-align: end;
+    margin-top: -33px;
+    margin-right: 20px;
+}
+
+.deliveryprice{
+    text-align: end;
+    margin-top: -33px;
+    margin-right: 20px;
+}
+
+.orderplaced{
+    color:Gold;
+    font-size:xx-large;
+}
+
+.orderidtext, .orderstatustext,.deliverytext{
+    color:rgb(167, 167, 167);
+}
+
+.googlemap{
+    padding:40px;
+align-self: center;
+align-items: center;
+justify-items: center;
+height:100%;
+width:700px;
+border: 5px;
+margin-top: 300px;
+margin-left:450px;
+background-color: white;
+box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
+}

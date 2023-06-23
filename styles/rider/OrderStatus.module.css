@@ -5,6 +5,7 @@
     height: 30px;
     margin-left:550px;
     margin-top:-95px;
+    /* align-items: flex-end; */
     /* margin:calc(10vh - 50px); */
 
 }
@@ -15,4 +16,5 @@
     padding:2px;
     /* font-weight: bold; */
     font-family: "Avenir Next", "Avenir", sans-serif;
+
 }
