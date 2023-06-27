@@ -9,3 +9,56 @@ margin-left: 240px;
 .title{
     text-align:center;
 }
+
+
+
+
+
+
+
+
+
+
+@media (min-width: 1001px) and (max-width: 1099px){
+    .leftContent{
+      width: 100%;
+    }
+    .rightContent{
+      display: none;
+    }
+  }
+  
+  @media (min-width: 700px) and (max-width: 1000px){
+    .rightContent{
+      display: none;
+    }
+    .leftContent{
+      width: 100%;
+    }
+    .text{
+      font-size: 28px;
+    }
+    .right{
+      display: none;
+    }
+    .left{
+      width: 100%;
+    }
+  }
+  
+  @media (min-width: 200px) and (max-width: 699px){
+    .right{
+      display: none;
+    }
+    .left{
+      width: 100%;
+    }
+    .rightContent{
+      display: none;
+    }
+    .leftContent{
+      width: 100%;
+    }
+  }
+  
+  

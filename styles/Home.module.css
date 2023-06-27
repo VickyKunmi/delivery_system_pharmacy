@@ -419,3 +419,49 @@ box-shadow: 25px 50px -12px rgba(0,0,0,0.25) ;
   justify-content: center;
   margin-left: -40px;
 }
+
+
+
+
+@media (min-width: 1001px) and (max-width: 1099px){
+  .home{
+    width: 100%;
+  }
+  .home{
+    display: none;
+  }
+}
+
+@media (min-width: 700px) and (max-width: 1000px){
+  .home{
+    display: none;
+  }
+  .home{
+    width: 100%;
+  }
+  .home{
+    font-size: 28px;
+  }
+  .home{
+    display: none;
+  }
+  .home{
+    width: 100%;
+  }
+}
+
+@media (min-width: 200px) and (max-width: 699px){
+  .right{
+    display: none;
+  }
+  .left{
+    width: 100%;
+  }
+  .rightContent{
+    display: none;
+  }
+  .leftContent{
+    width: 100%;
+  }
+}
+
