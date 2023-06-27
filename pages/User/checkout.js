@@ -10,13 +10,35 @@ import { useRouter } from "next/router";
 import { useQueryClient } from "react-query";
 import { deleteAction } from "@/redux/reducer";
 import { addDrug, removeDrug, reset } from "@/redux/cartSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import DeliveryAddress from "./DeliveryAddress";
 
 const Cart = ({ orders }) => {
+  const [customer, setCustomer] = useState(null);
+  const [deliveryFee, setDeliveryFee] = useState(null);
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
   const router = useRouter();
+  const { customerId } = router.query;
+  const getDeliveryFee = async (latitude, longitude) => {
+    try {
+      const response = await axios.get(`/api/delivery-fee?latitude=${latitude}&longitude=${longitude}`);
+      setDeliveryFee(response.data.deliveryFee);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    if (customerId) {
+      getCustomerDetails();
+    }
+  }, [customerId]);
+
+  useEffect(() => {
+    if (customer && customer.latitude && customer.longitude) {
+      getDeliveryFee(customer.latitude, customer.longitude);
+    }
+  }, [customer]);
   const cart = useSelector((state) => state.cart);
 
   useEffect(() => {
@@ -115,7 +137,12 @@ const Cart = ({ orders }) => {
             </div>
 
             <div className={styles.totalText}>
-              <b className={styles.totalTextTitle}>Delivery fee</b>{cart.deliveryFee}
+              {customer ?(
+          <h2>Delivery Fee: {deliveryFee ? `GHC${deliveryFee}` : 'Loading...'}</h2>
+                // <b className={styles.totalTextTitle}>Delivery fee</b>{customer.deliveryFee}
+              ): (
+                <p>Loading.....</p>
+              )}
             </div>
 
             <div className={styles.totalText}>

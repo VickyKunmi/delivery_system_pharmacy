@@ -1,7 +1,7 @@
 import { Sequelize, DataTypes } from "sequelize";
 const { STRING, INTEGER, DATE, BOOLEAN, NUMBER, DECIMAL, FLOAT, ARRAY, TEXT } = DataTypes;
 
-const sequelize = new Sequelize("get_pills_pharmacy", "root", "", {
+const sequelize = new Sequelize("greenlightpharmacy", "root", "", {
   host: "localhost",
   dialect: "mysql",
   define: {
@@ -152,10 +152,11 @@ const Delivery = sequelize.define(
     name: { type: STRING, allowNull: false },
     phone_no: { type: STRING, allowNull: false },
     user_email: { type: STRING, allowNull: false },
-    address: { type: STRING, allowNull: false },
+    longitude: { type: FLOAT, allowNull: false },
+    latitude: { type: FLOAT, allowNull: false },
     orderdetails: { type: TEXT, allowNull: false },
     totalfee: {type: FLOAT, allowNull: false},
-    deliveryfee: {type: FLOAT, allowNull: false},
+    deliveryFee: {type: FLOAT, allowNull: false},
     drugfee: {type: FLOAT, allowNull: false},
 
     createdAt: {

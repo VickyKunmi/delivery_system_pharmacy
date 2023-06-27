@@ -6,8 +6,20 @@ import DrugIcon from "@/components/user/DrugIcons";
 import { getServer } from "@/config";
 import axios from "axios";
 import Category from "@/components/user/CategoryNav";
+// import { paginate } from "@/utils/paginate";
+
+
+
+
 
 export default function Index({ category, drugs }) {
+  // const [currentPage, setCurrentPage] = useState(1);
+  //   const pageSize = 3;
+  
+  //   const onPageChange = (page) => {
+  //     setCurrentPage(page);
+  //   };
+  //   const paginatedPosts = paginate(category, currentPage, pageSize);
   return (
     <div>
       <Header />

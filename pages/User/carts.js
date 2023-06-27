@@ -63,8 +63,7 @@ const Cart = ({ orders }) => {
                 <th>Action</th>
               </tr>
               {/* <div> */}
-               
-                      {cart.drugs.map((order, index) => (
+               {cart.drugs.map((order, index) => (
                           <tr className={styles.tr} key={index}>
                           <td>
                             <div className={styles.imgContainer}>
@@ -74,7 +73,7 @@ const Cart = ({ orders }) => {
                                 height={50}
                                 style={{ objectFit: "cover" }}
                                 alt=""
-                              />
+                                />
                             </div>
                           </td>
                           <td>
@@ -93,9 +92,10 @@ const Cart = ({ orders }) => {
 
                           <td>
                             <div className={styles.total}>{order.price_symbol}{order.price * order.quantity}</div>
-                          </td>;
+                          </td>
 
                           <td>
+                        
                             <button className={styles.delete} onClick={() => handleDelete(order.id)}>Remove</button>
                           </td>
                         </tr>

@@ -166,16 +166,7 @@ export default function drug({ cat, records }) {
   );
 }
 
-export const getServerSideProps = async (ctx) => {
-  const myCookie = ctx.req?.cookies || "";
-  if(myCookie.token !== process.env.TOKEN){
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      }
-    }
-  }
+export const getServerSideProps = async () => {
   try {
     const categoryRes = await fetch(`${getServer}/api/Category`);
     const categoryData = await categoryRes.json();

@@ -16,6 +16,7 @@ export function useRequireAuth() {
   if (!session) {
     // User is not authenticated, redirect to the login page
     Router.push('/Rider/Login');
+    return null;
   }
 
   return session;

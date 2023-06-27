@@ -107,16 +107,7 @@ export default function Users({records}) {
 
 
 
-export const getServerSideProps = async (ctx) => {
-  const myCookie = ctx.req?.cookies || "";
-  if(myCookie.token !== process.env.TOKEN){
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      }
-    }
-  }
+export const getServerSideProps = async () => {
   try {
     const res = await fetch(`${getServer}/api/Signup`);
     const data = await res.json();
@@ -141,5 +132,3 @@ function DeleteComponent ({deletehandler, cancelhandler}) {
     </div>
   )
 }
-
-

@@ -3,12 +3,8 @@ import Head from "next/head";
 import styles from "../../styles/user/Prescription.module.css";
 import Image from "next/image";
 
-import { Alert } from "@mui/material";
-
 export default function Index({ category }) {
-  // const session = useRequireAuth();
     return (
-     
       <div>
         <Header />
         <Head>
@@ -72,5 +68,4 @@ export default function Index({ category }) {
 
                 
         </div>
-       
 )}  
