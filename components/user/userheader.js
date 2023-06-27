@@ -36,7 +36,7 @@ const Header = () => {
             </Link>
           </li>
           <li className={styles.listItem}><a className={styles.a} href="/User/OrderHistory">Order History</a></li>
-          <li className={styles.listItem}><a className={styles.a} href="/User/pLogin">Upload Prescription</a></li>
+          <li className={styles.listItem}><a className={styles.a} href="/User/prescription">Upload Prescription</a></li>
         </ul>
       </div>
         <div className={styles.item}>
